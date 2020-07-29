@@ -1,8 +1,15 @@
 import * as fs from 'fs';
+import * as path from 'path';
 let chirps = { nextid: 0 };
 
-if(fs.existsSync('chirps.json')) {
-    chirps = JSON.parse(fs.readFileSync('chirps.json').toString());
+
+// TODO: Convert to async 
+
+
+const chirpFile = path.join(__dirname, './chirps.json');
+
+if(fs.existsSync(chirpFile)) {
+    chirps = JSON.parse(fs.readFileSync(chirpFile).toString());
 }
 
 let getChirps = () => {
@@ -29,7 +36,7 @@ let deleteChirp = (id: number) => {
 }
 
 let writeChirps = () => {
-    fs.writeFileSync('chirps.json', JSON.stringify(chirps));
+    fs.writeFileSync(chirpFile, JSON.stringify(chirps));
 };
 
 const ChirpStoreExports = {

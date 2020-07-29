@@ -26,3 +26,8 @@ router.delete('/:id?', (req, res) => {
 
 
 export default router;
+
+
+
+// Add DTO written at per router request
+// Add res.json responses per request
