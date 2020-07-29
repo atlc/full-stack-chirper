@@ -1,36 +1,36 @@
 import * as React from 'react';
+import Container from 'react-bootstrap/Container';
+import Navbar from './components/navigation/Navbar'
+
 
 class App extends React.Component<IAppProps, IAppState> {
-	constructor(props: IAppProps) {
-		super(props);
-		this.state = {
-			name: null
-		};
-	}
+    constructor(props: IAppProps) {
+        super(props);
+        this.state = {
+            text: ""
+        }
+    }
 
-	async componentDidMount() {
-		try {
-			let r = await fetch('/api/hello');
-			let name = await r.json();
-			this.setState({ name });
-		} catch (error) {
-			console.log(error);
-		}
-	}
+    // onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     this.setState({ text: e.target.value });
+    // }
 
-	render() {
-		return (
-			<main className="container my-5">
-				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-			</main>
-		);
-	}
+    render() {
+        return (
+			<Container>
+				<Navbar></Navbar>
+	            {/* <input value={this.state.text} onChange={this.onInputChange} /> */}
+			</Container>
+        );
+    }
 }
 
 export interface IAppProps {}
 
 export interface IAppState {
-	name: string;
+	text: string;
 }
 
 export default App;
+
+
