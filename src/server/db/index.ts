@@ -5,9 +5,9 @@ import Chirps from './chirps';
 export const Connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: 'chirper',
-    password: '----',
-    database: 'chirper'
+    user: 'root',
+    password: 'equifax-admin',
+    database: 'chirprapp'
 });
 
 export const Query = (query: string, values?: Array<string | number>) => {
