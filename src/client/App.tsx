@@ -10,9 +10,16 @@ const App = () => {
 
     console.log('hey');
     return (
-        <Container>
-            <Navbar />
-        </Container>
+        <Router>
+            <Container>
+                <Navbar />
+                <Switch>
+                    <Route exact path="/" />
+                    <Route exact path="/" />
+                    <Route exact path="/" />
+                </Switch>
+            </Container>
+        </Router>
     )
 }
 
