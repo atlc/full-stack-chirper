@@ -1,24 +1,38 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import type { IChirp } from '../utils/types';
+import Chirp from '../components/Chirp';
 import { useParams } from 'react-router';
 
 const Details: React.FC<DetailsProps> = (props) => {
-    // const { id } = useParams();  
+
+    const [chirp, setChirp] = useState<IChirp>();
+
+    useEffect(() => {
+        (async () => {
+            const chirp = await fetch(`/api/chirps/${props.match.params.id}`)
+                .then(res => res.json());
+
+            setChirp(chirp);
+        })();
+    }, []);
 
     return (
-        <main className="container">
-            <section className="row justify-content-center mt-3">
-                <div className="col-12">
-                    <h1 className="display-1 text-center">Chirp Details</h1>
-                    {/* <h1 className="display-1 text-center">Chirp #{id} - Details</h1> */}
-                </div>
-            </section>
-        </main>
-    )
+        <>
+            <Chirp
+                id={`chirp-pseudouuid-${chirp.id.toString()}`}
+                userid={`user-pseudouuid-${chirp.userid.toString()}`}
+                content={chirp.content}
+                location={chirp.location}
+                _created={chirp._created}
+            />
+        </>
+    );
 }
 
 interface DetailsProps {
-    // id: string;
+    id: number;
 };
 
-
 export default Details;
+
+

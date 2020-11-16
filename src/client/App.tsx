@@ -14,11 +14,14 @@ const App = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/">
-                        <Home />    
+                        <Home />
                     </Route>
-                        <Route exact path="/chirp/:id">
-                            <Details />
-                        </Route>
+                    <Route exact path="/:id">
+                        <Details />
+                    </Route>
+                    <Route path="*">
+                        <Home />
+                    </Route>
                 </Switch>
             </BrowserRouter>
         </div>
