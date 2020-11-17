@@ -20,8 +20,8 @@ const Home: React.FC<HomeProps> = (props) => {
         <>
             {chirps.map(c => (
                 <Chirp
-                    id={`chirp-pseudouuid-${c.id.toString()}`}
-                    userid={`user-pseudouuid-${c.userid.toString()}`}
+                    id={`chirp-id-${c.id}`}
+                    userid={`user-id-${c.userid}`}
                     content={c.content}
                     location={c.location}
                     _created={c._created}

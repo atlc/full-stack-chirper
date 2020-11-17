@@ -11,10 +11,10 @@ const Chirp = (props: IChirp) => {
                 </div>
                 <div className="card-body">
                     <p className="card-text">{props.content}</p>
-                    <a href="#" className="btn btn-info">Go somewhere</a>
+                    <a href="#" className="btn btn-info">See just chirp #{props.id}</a>
                 </div>
                 <div className="card-footer text-muted">
-                {moment(props._created).format('h:mm A')} · {moment(props._created).format('MMM D, YYYY')} · {props.location}
+                    {moment(props._created).format('h:mm A')} · {moment(props._created).format('MMM D, YYYY')} · {props.location}
                 </div>
             </div>
         </div>
