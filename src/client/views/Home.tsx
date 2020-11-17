@@ -12,7 +12,6 @@ const Home: React.FC<HomeProps> = (props) => {
                 .then(res => res.json());
 
             setChirps(chirps);
-            console.log(`Hit the home page with ${chirps.length} fetched chirps!`);
         })();
     }, []);
 
@@ -20,8 +19,9 @@ const Home: React.FC<HomeProps> = (props) => {
         <>
             {chirps.map(c => (
                 <Chirp
-                    id={`chirp-id-${c.id}`}
-                    userid={`user-id-${c.userid}`}
+                    key={`_chirp_id-${c.id}`}
+                    id={c.id}
+                    userid={c.userid}
                     content={c.content}
                     location={c.location}
                     _created={c._created}

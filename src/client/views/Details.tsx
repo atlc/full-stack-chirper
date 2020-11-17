@@ -23,8 +23,9 @@ const Details: React.FC<DetailsProps> = (props) => {
         <>
             {chirps.map(c => (
                 <Chirp
-                    id={`chirp-id-${c.id}`}
-                    userid={`user-id-${c.userid}`}
+                    key={`_chirp_id-${c.id}`}
+                    id={c.id}
+                    userid={c.userid}
                     content={c.content}
                     location={c.location}
                     _created={c._created}

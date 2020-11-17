@@ -11,10 +11,10 @@ const Navbar = () => {
     return (
         <Row className="justify-content-end margin-top-10 margin-bot-20 hr-thin pad-bot-10 vr-thin">
             <Col md={2}>
-                <Button className="badge-pill vr-thin" variant="outline-info">Create Chirp</Button>
-            </Col>X
+                <Button className="badge-pill vr-thin" variant="outline-info" href="/">Home</Button>
+            </Col>
             <Col md={2}>
-                <Button className="badge-pill vr-thin" variant="info">Admin Mode</Button>
+                <Button className="badge-pill vr-thin" variant="info" href="/create">Create Chirp</Button>
             </Col>
         </Row>
     );
