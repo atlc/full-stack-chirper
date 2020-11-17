@@ -4,15 +4,22 @@ import db from '../db';
 const router = express.Router();
 const app = express();
 app.use(express.json());
+// https://www.npmjs.com/package/celebrate#example-usage
 
 router.get('/:id?', async (req, res) => {
     try {
         const dto = req.params;
-        const id: string = dto.id;
-        id ? res.json(await db.Chirps.chirp_by_id(id)) : res.json(await db.Chirps.all());
+        const id = dto.id;
+        if (id) {
+            const [ chirp ] = await db.Chirps.chirp_by_id(id);
+            res.json(chirp);
+        } else {
+            const chirp = await db.Chirps.all();
+            res.json(chirp);
+        }
     } catch(e) {
         console.log(e);
-        res.send('A server error has occurred.').sendStatus(500);
+        res.status(500).send('A server error has occurred.');
     }    
 });
 
@@ -22,35 +29,38 @@ router.post('/', async (req, res) => {
         const userId: string = dto.userId;
         const content: string = dto.content;
         const location: string = dto.location;
-        res.json(await db.Chirps.new_chirp(userId, content, location));
+        const sqlRes  = await db.Chirps.new_chirp(userId, content, location) 
+        res.json(sqlRes);
     } catch(e) {
         console.log(e);
-        res.send('A server error has occurred.').sendStatus(500);
+        res.status(500).send('A server error has occurred.')
     }
 });
 
 
-router.put('/:id?', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const dtoParams = req.params;
         const dtoBody = req.body;
-        const id: string = dtoParams.id;
+        const id = dtoParams.id;
         const content: string = dtoBody.content;
-        id ? res.json(await db.Chirps.update_chirp(id, content)) : res.sendStatus(404);
+        const sqlRes = await db.Chirps.update_chirp(id, content);
+        res.json(sqlRes);
     } catch(e) {
         console.log(e);
-        res.send('A server error has occurred.').sendStatus(500);
+        res.status(500).send('A server error has occurred.');
     }    
 });
 
-router.delete('/:id?', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const dto = req.params;
-        const id: string = dto.id;
-        id ? res.json(await db.Chirps.delete_chirp(id)) : res.sendStatus(404);
+        const id = dto.id;
+        const sqlRes = await db.Chirps.delete_chirp(id);
+        res.json(sqlRes);
     } catch(e) {
         console.log(e);
-        res.send('A server error has occurred.').sendStatus(500);
+        res.status(500).send('A server error has occurred.');
     }    
 });
 
