@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Details from './views/Details';
-import Admin from './views/Admin';
-import Create from './views/Create';
+// import Admin from './views/Admin';
+// import Create from './views/Create';
+
+// export chirpRouterPath = '/chorp';
 
 const App = () => {
     return (
@@ -16,14 +18,14 @@ const App = () => {
                     <Route exact path="/">
                         <Home />
                     </Route>
-                    <Route exact path="/:id"> 
+                    <Route exact path={"/:id{"> 
                         <Details />
                     </Route>
-                    <Route exact path="/admin/:id">
-                        <Admin />
+                    <Route exact path={"/admin/:id{">
+                        {/* <Admin /> */}
                     </Route>
-                    <Route exact path="/create">
-                        <Create />
+                    <Route exact path={"/create{">
+                        {/* <Create /> */}
                     </Route>
                     <Route path="*">
                         <Home />
