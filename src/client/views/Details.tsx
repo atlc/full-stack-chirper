@@ -14,7 +14,6 @@ const Details: React.FC<DetailsProps> = (props) => {
                 .then(res => res.json());
 
             setChirps(chirps);
-            console.log(`Hit the home page with ${chirps.length} fetched chirps!`);
         })();
     }, []);
 
@@ -40,5 +39,3 @@ interface DetailsProps {
 };
 
 export default Details;
-
-

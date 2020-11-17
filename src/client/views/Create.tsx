@@ -1,20 +1,22 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import type { IChirp } from '../utils/types';
+import EditableChirp from '../components/EditableChirp';
+import { useParams } from 'react-router';
 
 const Create: React.FC<CreateProps> = (props) => {
+
     return (
-        <main className="container">
-            <section className="row justify-content-center mt-3">
-                <div className="col-12">
-                    <h1 className="display-1 text-center">Create Chirp!</h1>
-                </div>
-            </section>
-        </main>
-    )
+        <>
+            <div className="alert alert-info mt-3">
+                <h1 className="text-center">Create Chirp!</h1>
+            </div>
+            {/* <EditableChirp  /> */}
+        </>
+    );
 }
 
 interface CreateProps {
-    
-};
 
+};
 
 export default Create;
