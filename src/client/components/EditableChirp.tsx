@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { IChirp } from '../utils/types';
 import * as moment from 'moment';
@@ -10,7 +9,7 @@ const EditableChirp = (props: IChirp) => {
     const handleChange = () => {
         debugger;
         useEffect(() => {
-            let chirp:HTMLElement<HTMLTextAreaElement> = document.getElementById('chirpTextArea').value;
+            let chirp = document.getElementById('chirpTextArea').value;
             setChirpText(chirp);
             console.log(chirp);
         }, []);
