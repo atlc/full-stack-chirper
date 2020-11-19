@@ -4,6 +4,7 @@ import db from '../db';
 const router = express.Router();
 const app = express();
 app.use(express.json());
+
 // https://www.npmjs.com/package/celebrate#example-usage
 
 router.get('/:id?', async (req, res) => {
@@ -11,7 +12,7 @@ router.get('/:id?', async (req, res) => {
         const dto = req.params;
         const id = dto.id;
         if (id) {
-            const [ chirp ] = await db.Chirps.chirp_by_id(id);
+            const chirp = await db.Chirps.single(id);
             res.json(chirp);
         } else {
             const chirp = await db.Chirps.all();
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
         const userId: string = dto.userId;
         const content: string = dto.content;
         const location: string = dto.location;
-        const sqlRes  = await db.Chirps.new_chirp(userId, content, location) 
+        const sqlRes  = await db.Chirps.create(userId, content, location) 
         res.json(sqlRes);
     } catch(e) {
         console.log(e);
@@ -44,7 +45,7 @@ router.put('/:id', async (req, res) => {
         const dtoBody = req.body;
         const id = dtoParams.id;
         const content: string = dtoBody.content;
-        const sqlRes = await db.Chirps.update_chirp(id, content);
+        const sqlRes = await db.Chirps.update(id, content);
         res.json(sqlRes);
     } catch(e) {
         console.log(e);
@@ -56,7 +57,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const dto = req.params;
         const id = dto.id;
-        const sqlRes = await db.Chirps.delete_chirp(id);
+        const sqlRes = await db.Chirps.destroy(id);
         res.json(sqlRes);
     } catch(e) {
         console.log(e);

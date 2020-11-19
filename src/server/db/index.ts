@@ -1,6 +1,6 @@
 import * as mysql from 'mysql';
 import config from '../config';
-import Chirps from './queries';
+import Chirps from './queries/chirps';
 
 const pool = mysql.createPool(config.mysql);
 
