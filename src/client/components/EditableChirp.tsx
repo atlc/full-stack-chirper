@@ -7,16 +7,15 @@ const EditableChirp = (props: IChirp) => {
     const [chirpText, setChirpText] = useState(props.content);
 
     const handleChange = () => {
-        debugger;
         useEffect(() => {
-            let chirp = document.getElementById('chirpTextArea').value;
+            let chirp = (document.getElementById('chirpTextArea') as HTMLInputElement).value;
             setChirpText(chirp);
             console.log(chirp);
         }, []);
     }
 
-    const submitChirp = (ev/*: React.MouseEvent<HTMLElement>*/) => {
-        ev.preventDefault();
+    const submitChirp = (ev: any) => {
+        // ev.preventDefault();
         console.log(chirpText);
     }
 
