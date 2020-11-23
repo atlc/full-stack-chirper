@@ -13,6 +13,7 @@ router.get('/:id?', async (req, res) => {
         const id = dto.id;
         if (id) {
             const chirp = await db.Chirps.single(id);
+            console.log(`\n\nGETTING CHIRP #${id}`, chirp);
             res.json(chirp);
         } else {
             const chirp = await db.Chirps.all();
