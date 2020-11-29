@@ -5,13 +5,13 @@ import Chirps from './queries/chirps';
 const pool = mysql.createPool(config.mysql);
 
 
-export const Query = (query, values?: any) => {
-    return new Promise((resolve, reject) => {
+export const Query = <T = any>(query, values?: any) => {
+    return new Promise<T>((resolve, reject) => {
         pool.query(query, values, (err, results) => {
             if (err) {
-                console.log(err);
+                reject(err);
             } else {
-                console.log(results);
+                resolve(results);
             }
         })
     })

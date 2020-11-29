@@ -5,19 +5,19 @@ const router = express.Router();
 const app = express();
 app.use(express.json());
 
+// Use Joi & Celebrate for true full-stack with auth for validating requests
 // https://www.npmjs.com/package/celebrate#example-usage
 
 router.get('/:id?', async (req, res) => {
     try {
         const dto = req.params;
         const id = dto.id;
-        if (id) {
+        if (!!id) {
             const chirp = await db.Chirps.single(id);
-            console.log(`\n\nGETTING CHIRP #${id}`, chirp);
             res.json(chirp);
         } else {
-            const chirp = await db.Chirps.all();
-            res.json(chirp);
+            const chirps = await db.Chirps.all();
+            res.json(chirps);
         }
     } catch(e) {
         console.log(e);

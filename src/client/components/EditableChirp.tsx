@@ -32,6 +32,7 @@ const EditableChirp = (props: IChirp) => {
                             className="my-3"
                             defaultValue={props.content}
                             rows={5} cols={60}
+                            //@ts-ignore
                             onChange={handleChange()}
                         ></textarea>
                     </div>

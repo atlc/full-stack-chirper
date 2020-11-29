@@ -7,11 +7,9 @@ const Details: React.FC<DetailsProps> = (props) => {
 
     const { id } = useParams();
     const [chirps, setChirps] = useState<IChirp[]>([]);
-    console.log(`\n\n\nHEY IT'S ME, CHIRP ID #${id}\n\n\n`)
 
     useEffect(() => {
         (async () => {
-            
             const chirps = await fetch(`/api/chirps/${id}`)
                 .then(res => res.json());
 
