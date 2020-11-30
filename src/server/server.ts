@@ -18,6 +18,14 @@ app.use(express.static('public'));
 app.use('/api', apiRouter);
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html'))); // Serve up homepage as default when unknown routes are hit
 
+
+// app.get('*', (req, res, next) => {
+//     res.sendFile(path.join(__dirname, '../public/404.html'))
+//     setTimeout(() => next(), 5000);
+// });
+
+// app.get('*', (req, res) => res.redirect('/'));
+
 // const globalErrorHandler = (e) => console.log(e)
 
 const port = process.env.PORT || 3000;

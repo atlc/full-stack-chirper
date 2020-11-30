@@ -4,19 +4,37 @@ import * as moment from 'moment';
 
 const EditableChirp = (props: IChirp) => {
 
+    const [id, setId] = useState(props.id);
     const [chirpText, setChirpText] = useState(props.content);
 
-    const handleChange = () => {
-        useEffect(() => {
-            let chirp = (document.getElementById('chirpTextArea') as HTMLInputElement).value;
-            setChirpText(chirp);
-            console.log(chirp);
-        }, []);
+    useEffect(() => {
+        handleUpdate();
+    }, []);
+
+
+    const handleUpdate = () => {
+        let chirpTextArea = (document.getElementById('chirpTextArea') as HTMLInputElement).value;
+        setChirpText(chirpTextArea);
     }
 
-    const submitChirp = (ev: any) => {
-        // ev.preventDefault();
-        console.log(chirpText);
+    const submitChirp = async (ev: React.MouseEvent) => {
+        ev.preventDefault();
+        await fetch(`/api/chirps/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: chirpText })
+        })
+            .then(res => res.json())
+            .then(() => alert('Chirp updated!'));
+    }
+
+    const destroyChirp = async (ev: React.MouseEvent) => {
+        ev.preventDefault();
+        if (confirm('Delete this chirp forever?')) {
+            await fetch(`/api/chirps/${id}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(() => alert('Chirp deleted!'));
+        }
     }
 
     return (
@@ -27,16 +45,16 @@ const EditableChirp = (props: IChirp) => {
                 </div>
                 <div className="card-body">
                     <div>
-                        <textarea 
+                        <textarea
                             id="chirpTextArea"
                             className="my-3"
                             defaultValue={props.content}
                             rows={5} cols={60}
-                            //@ts-ignore
-                            onChange={handleChange()}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdate()}
                         ></textarea>
                     </div>
-                    <a href={`/`} className="btn btn-info mx-1" onClick={submitChirp}>Save chirp! [TURN THIS INTO PUT &amp; POST ROUTE]</a>
+                    <a className="btn btn-info mx-1" onClick={(e: React.MouseEvent<Element, MouseEvent>) => submitChirp(e)}>Save chirp!</a>
+                    <a className="btn btn-danger mx-1" onClick={(e: React.MouseEvent<Element, MouseEvent>) => destroyChirp(e)}>DESTROY chirp!</a>
                 </div>
                 <div className="card-footer text-muted">
                     {moment(props._created).format('h:mm A')} · {moment(props._created).format('MMM D, YYYY')} · {props.location}

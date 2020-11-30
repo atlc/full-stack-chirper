@@ -4,10 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Details from './views/Details';
-// import Admin from './views/Admin';
+import Admin from './views/Admin';
 import Create from './views/Create';
 
-// export chirpRouterPath = '/';
 
 const App = () => {
     return (
@@ -22,8 +21,7 @@ const App = () => {
                         <Details />
                     </Route>
                     <Route exact path="/admin/:id">
-                        <Home />
-                        {/* <Admin />  */}
+                        <Admin /> 
                     </Route>
                     <Route exact path="/create">
                         <Create />
