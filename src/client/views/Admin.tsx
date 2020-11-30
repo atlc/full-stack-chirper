@@ -20,7 +20,7 @@ const Admin: React.FC<AdminProps> = (props) => {
 
     return (
         <>
-            <div className="alert alert-warning mt-3">
+            <div className="alert alert-danger mt-3">
                 <h1 className="text-center">Editing Chirp!</h1>
             </div>
             {chirps.map(c => (

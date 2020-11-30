@@ -11,7 +11,7 @@ const Chirp = (props: IChirp) => {
                 </div>
                 <div className="card-body">
                     <p className="card-text">{props.content}</p>
-                    <a href={`/${props.id}`} className="btn btn-info mx-1">See just chirp #{props.id}</a>
+                    <a href={`/details/${props.id}`} className="btn btn-info mx-1">See just chirp #{props.id}</a>
                     <a href={`/admin/${props.id}`} className="btn btn-info mx-1">Edit chirp #{props.id}</a>
                 </div>
                 <div className="card-footer text-muted">
